@@ -1,0 +1,91 @@
+<div class="row">
+  <div class="col-xs-12">
+    <div class="page-header">
+      <h1>{{ post.title }}
+        <br>
+        <small>
+          <a ng-href="/users/{{ post.author.slug ? post.author.slug : post.author.id }}">
+            <img class="img-circle"
+                 width="20px"
+                 height="20px"
+                 ng-src="{{ comment.author.avatar ? comment.author.avatar : default.avatar }}">
+          </a> | {{ post.author.username ? post.author.username : '' }}
+          posted at
+          {{ post.createdAt | date: 'shortTime' }} on
+          {{ post.createdAt | date: 'longDate' }}
+        </small>
+      </h1>
+    </div>
+
+    <div ng-bind-html="post.text"></div>
+
+    <div>
+      <div ng-repeat="tag in post.tags"
+           class="pull-left">
+        <span class="label label-primary">{{ tag.text }}</span>
+      </div>
+
+      <div class="pull-right">
+        {{ post.views}} <i class="fa fa-eye fa-lg"></i> |
+        {{ post.comments.length }} <i class="fa fa-comment"></i> |
+        <i ng-if="profile" class="fa fa-chevron-up"
+           ng-click="votePost(post.id, 1)"></i>
+        {{ post.votes }}
+        <i ng-if="profile" class="fa fa-chevron-down"
+           ng-click="votePost(post.id, -1)"></i>
+        <i ng-if="!profile" class="fa fa-heart"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
+<md-list ng-if="profile">
+  <md-list-item class="media">
+    <a class="media-left media-middle" ng-href="/users/{{ profile.slug ? profile.slug : profile.id }}">
+      <img class="img-circle"
+           width="20px"
+           height="20px"
+           ng-src="{{ profile.avatar ? profile.avatar : default.avatar }}">
+    </a>
+
+    <form class="media-body" ng-submit="addComment(newComment, post.id); newComment = undefined;">
+      <md-input-container>
+        <label>Comment</label>
+        <input type="text"
+               ng-model="newComment">
+      </md-input-container>
+    </form>
+  </md-list-item>
+
+  <md-list-item class="media"
+                ng-repeat="comment in post.comments">
+    <a class="media-left" ng-href="/users/{{ comment.author.slug ? comment.author.slug : comment.author.id }}">
+      <img class="img-circle"
+           width="20px"
+           height="20px"
+           ng-src="{{ comment.author.avatar ? comment.author.avatar : default.avatar }}">
+    </a>
+
+    <div class="media-body">
+      <h4 class="media-heading">
+        <span ng-if="comment.author.username">{{ comment.author.username }}</span>
+        <small>
+          commented at
+          {{ comment.createdAt | date: 'shortTime' }} on
+          {{ comment.createdAt | date: 'longDate' }}
+        </small>
+      </h4>
+      <p>{{ comment.text }}</p>
+    </div>
+
+    <div class="media-right">
+      <p class="text-center">
+        <i class="fa fa-chevron-up fa-lg"
+           ng-click="voteComment(comment.id, 1, $index)"></i>
+        {{ comment.votes }}
+        <i class="fa fa-chevron-down fa-lg"
+           ng-click="voteComment(comment.id, -1, $index)"></i>
+      </p>
+    </div>
+  </md-list-item>
+</md-list>

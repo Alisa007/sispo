@@ -1,0 +1,196 @@
+<script type="text/ng-template" id="customTemplate.html">
+  <a>
+    <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+    <span ng-if="match.model.breed">, {{ match.model.breed.breed }}</span>
+  </a>
+</script>
+
+<div class="row">
+  <div class="form-group">
+    <alert ng-repeat="alert in alerts"
+           type="{{alert.type}}"
+           close="closeAlert($index)">{{alert.text}}</alert>
+  </div>
+
+  <div class="col-xs-4">
+    <div class="box">
+      <div class="img-box">
+        <div ng-if="profile.id == user.id"
+             ngf-drop ngf-select ng-model="$parent.files" ng-model-rejected="rejFiles"
+             ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}" class="drop-box"
+             ngf-multiple="true" ngf-allow-dir="true" ngf-accept="'image/*,application/pdf'"
+             ngf-drop-available="dropAvailable"
+             style="width: 100%; height: 100%;">
+          <img
+               class="img-circle"
+               width="100%"
+               height="100%"
+               ng-src="{{ user.avatar ? user.avatar : default.avatar }}">
+        </div>
+
+        <img ng-if="profile.id != user.id"
+             class="img-circle"
+             width="100%"
+             height="100%"
+             ng-src="{{ user.avatar ? user.avatar : default.avatar }}">
+      </div>
+    </div>
+
+    <br>
+
+    <div ng-if="profile.id == user.id">
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"
+                 ng-model="user.isLost">
+          pet is lost
+        </label>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox"
+                 ng-model="user.isFound">
+          pet is found
+        </label>
+      </div>
+    </div>
+
+    <div ng-if="profile.id != user.id">
+      <i ng-if="user.isLost"
+         class="fa fa-check text-primary"> pet is lost</i>
+      <i ng-if="user.isFound"
+         class="fa fa-check text-primary"> pet is found</i>
+    </div>
+
+  </div>
+
+  <div ng-if="profile.id == user.id" class="col-xs-8">
+    <div ng-include src="'/templates/user/form.html'"></div>
+  </div>
+
+  <div ng-if="profile.id != user.id" class="col-xs-8">
+    <h1 ng-if="user.username">
+      {{ user.username }}
+      <small>
+        <span ng-if="user.breed.breed">{{ user.breed.breed }}</span><span ng-if="user.breed.kind.kind">, {{ user.breed.kind.kind }}</span>
+      </small>
+    </h1>
+
+    <div class="btn-group btn-group-justified" role="group">
+      <div class="btn-group" role="group">
+        <button ng-click="follow(user.id)"
+                type="button"
+                class="btn btn-success">Follow</button>
+      </div>
+      <div class="btn-group" role="group">
+        <button ng-click="report(user.id)"
+                type="button"
+                class="btn btn-danger">Report</button>
+      </div>
+    </div>
+
+    <br>
+
+    <div class="row form-inline">
+      <div ng-if="user.age"
+         class="col-sm-3">
+        Age : {{ user.age }}
+      </div>
+
+      <div ng-if="user.gender"
+           class="col-sm-9">
+        Gender : {{ user.gender }}
+      </div>
+    </div>
+
+
+    <div ng-if="user.location" class="row">
+      <div class="col-xs-12 form-group">
+        <p>
+        Location :
+        <span ng-if="user.location.city">{{ user.location.city }}</span><span ng-if="user.location.countryFull">, {{ user.location.countryFull }}</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<hr>
+
+<div class="row">
+  <div class="col-xs-12">
+    <ul class="nav nav-tabs">
+      <li class="active"><a href="#posts" data-toggle="tab">Posts</a></li>
+      <li><a href="#friends" data-toggle="tab">Friends</a></li>
+    </ul>
+
+    <br>
+
+    <div id="myTabContent" class="tab-content">
+      <div class="tab-pane row fade active in" id="posts">
+        <md-card class="col-xs-12" ng-repeat="post in user.posts">
+          <md-card-content ng-click="go('/posts/' + post.slug )">
+
+            <h2 class="text-center">{{ post.title }}</h2>
+
+            <div class="row">
+              <div class="col-xs-12">
+                {{ post.createdAt | date: 'shortTime' }} on
+                {{ post.createdAt | date: 'longDate' }}
+              </div>
+            </div>
+
+            <div ng-bind-html="post.text | limitHtml: 100">...</div>
+
+            <div>
+              <div ng-repeat="tag in post.tags"
+                   class="pull-left">
+                <span class="label label-primary">{{ tag.text }}</span>
+              </div>
+
+              <div class="pull-right">
+                <i class="fa fa-eye fa-lg" tooltip="Number of post views"></i> {{ post.views}}  |
+                {{ post.comments.length }} <i class="fa fa-comment"></i> |
+                <i ng-if="profile" class="fa fa-chevron-up"
+                   ng-click="vote(post.id, 1, $index)"></i>
+                {{ post.votes }}
+                <i ng-if="!profile" class="fa fa-heart"></i>
+                <i ng-if="profile" class="fa fa-chevron-down"
+                   ng-click="vote(post.id, -1, $index)"></i>
+              </div>
+            </div>
+          </md-card-content>
+        </md-card>
+      </div>
+      <div class="tab-pane row fade" id="friends">
+        <div class="col-xs-12">
+          <md-card ng-repeat="user in user.friends">
+            <md-card-content ng-if="user.username"
+                             ng-click="go('/users/' + (user.slug ? user.slug : user.id))">
+              <div class="media">
+                <div class="media-left">
+                  <img class="img-circle"
+                       width="50px"
+                       height="50px"
+                       ng-src="{{ user.avatar ? user.avatar : default.avatar }}">
+                </div>
+
+                <div class="media-body">
+                  <h2 class="media-heading">{{ user.username }}</h2>
+                  <p>
+
+                  <div class="pull-left">
+        <span class="label label-primary"
+              ng-repeat="tag in user.tags">{{ tag.text }}f</span>
+                  </div>
+                </div>
+              </div>
+            </md-card-content>
+          </md-card>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

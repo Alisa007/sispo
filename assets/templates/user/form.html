@@ -1,0 +1,89 @@
+<form ng-submit="save(user)"
+      method="POST"
+      role="form"
+      name="profileForm">
+
+  <div class="form-group">
+    <input type="text"
+           name="username"
+           ng-model="user.username"
+           id="username"
+           ng-required="true"
+           placeholder="Username"
+           class="form-control" required>
+  </div>
+
+  <div class="form-group row">
+    <div class="form-group col-xs-6">
+      <input ng-blur="submitBreed()"
+             type="text"
+             name="breed"
+             id="breed"
+             class="form-control"
+             placeholder="Breed"
+             ng-model="user.breed.breed"
+             typeahead="breed.breed for breed in loadBreeds($viewValue)"
+             typeahead-on-select="submitBreed($item, $model, $label)">
+    </div>
+
+    <div class="form-group col-xs-6">
+      <input ng-blur="submitKind()"
+             ng-class="profileForm.breed.$dirty ? (profileForm.kind.$pristine ? 'has-error' : 'has-success' ) : ''"
+             ng-if="user.isNewBreed"
+             type="text"
+             name="kind"
+             id="kind"
+             class="form-control"
+             placeholder="Kind"
+             ng-model="user.breed.kind.kind"
+             typeahead="kind.kind for kind in loadKinds($viewValue)"
+             typeahead-on-select="submitKind($item, $model, $label)">
+      <label ng-show="signupForm.password.$dirty && signupForm.password.$error"
+             class="control-label" for="kind">You didn't specify kind</label>
+    </div>
+  </div>
+
+  <div class="form-group">
+    Age :
+    <input ng-model="user.age"
+           type="number"
+           min="0"
+           max="99">
+  </div>
+
+  <div class="form-group form-inline">
+    Gender :
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"
+               ng-model="user.gender"
+               ng-true-value="'male'"
+               ng-false-value="undefined">
+        male
+      </label>
+    </div>
+
+    <div class="checkbox">
+      <label>
+        <input type="checkbox"
+               ng-model="user.gender"
+               ng-true-value="'female'"
+               ng-false-value="undefined">
+        female
+      </label>
+    </div>
+
+  </div>
+
+  <div class="btn-group btn-group-justified" role="group">
+    <div class="btn-group" role="group">
+      <button type="submit"
+              class="btn btn-success">Update profile</button>
+    </div>
+  </div>
+</form>
+
+<!--//add friends-->
+<!--// search age/breed-->
+<!--report-->

@@ -1,0 +1,39 @@
+<md-list ng-controller="MailDetailController">
+
+  <md-list-item class="media" ng-controller="MailDetailFormController">
+    <div class="media-left media-middle">
+      <img class="media-object img-circle"
+           width="30px"
+           height="30px"
+           ng-src="{{ profile.avatar ? profile.avatar : default.avatar }}">
+    </div>
+
+    <form ng-submit="send(); text = undefined;" class="media-body">
+      <md-input-container flex>
+        <label>Message</label>
+        <input type="text" ng-model="text">
+      </md-input-container>
+    </form>
+
+  </md-list-item>
+
+
+  <md-list-item class="media"
+                ng-repeat="mail in mailChain.mails">
+    <div ng-class="(profile.id == mail.sender.id) ? 'media-right pull-right' : 'media-left'">
+      <a ng-href="/users/{{ mail.sender.slug ? mail.sender.slug : mail.sender.id }}">
+        <img class="img-circle media-object"
+             width="30px"
+             height="30px"
+             ng-src="{{ mail.sender.avatar ? mail.sender.avatar : default.avatar }}">
+      </a>
+    </div>
+
+    <p class="media-body">
+      {{ mail.text }}
+    </p>
+
+    <br ng-if="!($last)">
+
+  </md-list-item>
+</md-list>

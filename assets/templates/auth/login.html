@@ -1,0 +1,71 @@
+<div class="modal-header">
+    <button ng-click="$dismiss()"
+            type="button"
+            class="close"
+            data-dismiss="modal" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 class="modal-title">Login</h4>
+</div>
+
+<div class="modal-body">
+
+  <div class="form-group">
+    <div class="btn-group btn-group-justified" role="group" aria-label="...">
+
+      <div ng-repeat="provider in providers"
+           class="btn-group" role="group">
+        <button type="button"
+                class="btn btn-lg btn-default btn-block"
+                ng-click="auth(provider.slug)">
+          <i class="fa fa-{{ provider.slug }} fa-lg"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <form ng-submit="forgotPassword ? recover(user, loginForm.$valid) : login(user, loginForm.$valid); $close();"
+        method="POST"
+        role="form"
+        name="loginForm">
+    <div ng-class="loginForm.email.$dirty ? (loginForm.email.$invalid ? 'has-error' : 'has-success' ) : ''"
+         class="form-group">
+      <input type="email"
+             name="email"
+             id="email"
+             ng-model="user.email"
+             ng-required="true"
+             placeholder="Email"
+             class="form-control" required autofocus>
+    </div>
+
+    <div ng-if="!forgotPassword"
+         ng-class="loginForm.password.$dirty ? (loginForm.password.$invalid ? 'has-error' : 'has-success' ) : ''"
+         class="form-group">
+      <input type="password"
+             name="password"
+             ng-model="user.password"
+             ng-minlength="6"
+             id="password"
+             ng-required="true"
+             placeholder="Password"
+             class="form-control" required>
+    </div>
+
+    <div class="form-group">
+      <a class="pull-right"
+         type="button"
+         ng-click="forgotPassword = !forgotPassword">
+        {{ forgotPassword ? 'Remember password?' : 'Forgot password?' }}
+      </a>
+      <br>
+    </div>
+
+    <div class="form-group">
+      <button type="submit"
+              class="btn btn-lg btn-primary btn-block">
+        {{ forgotPassword ? 'Recover' : 'Login' }}
+      </button>
+    </div>
+  </form>
+</div>

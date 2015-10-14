@@ -1,0 +1,174 @@
+<md-tabs md-dynamic-height md-border-bottom>
+  <md-tab label="posts">
+    <md-content>
+
+      <div ng-if="!posts.length">No posts need moderation.</div>
+
+      <md-card ng-repeat="post in posts"
+               ng-click="$location.path('/posts/' + post.slug);">
+        <md-card-content class="media">
+
+          <div class="media-body">
+            <h2 class="text-center md-title">{{ post.title }}</h2>
+            <p>
+              {{ post.createdAt | date:'longDate' }} |
+              <img class="img-circle" width="20px"
+                   ng-src="post.author.avatar">
+            </p>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-success"
+                    ng-click="approve('post', post.id, true, $index)">
+              <i class="fa fa-check fa-lg"></i>
+            </button>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-danger"
+                    ng-click="approve('post', post.id, false, $index)">
+              <i class="fa fa-close fa-lg"></i>
+            </button>
+          </div >
+        </md-card-content>
+      </md-card>
+    </md-content>
+  </md-tab>
+
+  <md-tab label="tags">
+    <md-content>
+
+      <div ng-if="!tags.length">No tags need moderation.</div>
+
+      <md-card ng-repeat="tag in tags">
+        <md-card-content class="media">
+          <div class="media-body">
+            <h2 class="text-center md-title">
+              {{ tag.text }}
+            </h2>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-success"
+                    ng-click="approve('tag', tag.id, true, $index)">
+              <i class="fa fa-check fa-lg"></i>
+            </button>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-danger"
+                    ng-click="approve('tag', tag.id, false, $index)">
+              <i class="fa fa-close fa-lg"></i>
+            </button>
+          </div >
+        </md-card-content>
+      </md-card>
+
+    </md-content>
+  </md-tab>
+  <md-tab label="kinds">
+    <md-content>
+
+      <div ng-if="!kinds.length">No kinds need moderation.</div>
+
+      <md-card ng-repeat="kind in kinds">
+        <md-card-content class="media">
+          <div class="media-body">
+            <h2 class="text-center md-title">
+              {{ kind.kind }}
+            </h2>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-success"
+                    ng-click="approve('kind', kind.id, true, $index)">
+              <i class="fa fa-check fa-lg"></i>
+            </button>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-danger"
+                    ng-click="approve('kind', kind.id, false, $index)">
+              <i class="fa fa-close fa-lg"></i>
+            </button>
+          </div>
+        </md-card-content>
+      </md-card>
+
+    </md-content>
+  </md-tab>
+
+  <md-tab label="breeds">
+    <md-content>
+
+      <div ng-if="!breeds.length">No breeds need moderation.</div>
+
+      <md-card ng-repeat="breed in breeds">
+        <md-card-content class="media">
+          <div class="media-body">
+            <h2 class="text-center md-title">
+              {{ breed.breed }}
+              <small>{{ breed.kind ? 'is' + breed.kind.kind : ''}}</small>
+            </h2>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-success"
+                    ng-click="approve('breed', breed.id, true, $index)">
+              <i class="fa fa-check fa-lg"></i>
+            </button>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-danger"
+                    ng-click="approve('breed', breed.id, false, $index)">
+              <i class="fa fa-close fa-lg"></i>
+            </button>
+          </div >
+        </md-card-content>
+      </md-card>
+    </md-content>
+  </md-tab>
+
+  <md-tab label="users">
+    <md-content>
+
+      <div ng-if="!users.length">No users need moderation.</div>
+
+      <md-card ng-repeat="user in users"
+               ng-click="$location.path('/users/' + user.slug ? user.slug : user.id);">
+        <md-card-content class="media">
+          <div class="media-body">
+            <h2 class="text-center md-title">{{ user.username }}</h2>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-success"
+                    ng-click="approve('user', user.id, true, $index)">
+              <i class="fa fa-check fa-lg"></i>
+            </button>
+          </div>
+
+          <div class="media-right  media-middle">
+            <button type="button"
+                    class="btn btn-danger"
+                    ng-click="approve('user', user.id, false, $index)">
+              <i class="fa fa-close fa-lg"></i>
+            </button>
+          </div >
+        </md-card-content>
+      </md-card>
+
+    </md-content>
+  </md-tab>
+</md-tabs>
+

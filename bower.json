@@ -1,0 +1,38 @@
+{
+  "name": "angular-seed",
+  "description": "A starter project for AngularJS",
+  "version": "0.0.0",
+  "homepage": "https://github.com/angular/angular-seed",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "rangy"             : "latest",
+    "summernote"        : "latest",
+    "classie"           : "latest",
+    "bootswatch-scss"   : "latest",
+
+    "angular"           : "latest",
+    "angular-route"     : "latest",
+    "angular-loader"    : "latest",
+    "angular-mocks"     : "latest",
+    "angular-resource"  : "latest",
+    "angular-cookies"   : "latest",
+    "angular-sanitize"  : "latest",
+    "angular-touch"     : "latest",
+    "angular-animate"   : "latest",
+
+    "angular-ui-slider" : "latest",
+
+    "ngInfiniteScroll"  : "latest",
+
+    "html5-boilerplate" : "latest",
+    "lodash"            : "latest",
+    "underscore"        : "latest",
+    "restangular"       : "latest",
+    "angular-ui-router" : "latest",
+    "angular-socket-io" : "latest",
+    "angular-bootstrap" : "latest",
+    "angular-summernote": "latest",
+    "angular-growl-v2"  : "latest"
+  }
+}

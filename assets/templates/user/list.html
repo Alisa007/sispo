@@ -1,0 +1,123 @@
+<script type="text/ng-template" id="breedTemplate.html">
+  <a>
+    <span bind-html-unsafe="match.label | typeaheadHighlight:query"></span><small ng-if="match.model.kind.kind">, {{ match.model.kind.kind }}</small>
+  </a>
+</script>
+
+<div class="form-group">
+  <input type="text"
+         placeholder="Enter the username"
+         ng-model="user.username"
+         class="form-control">
+</div>
+
+<accordion>
+  <accordion-group is-open="status.open">
+    <accordion-heading>
+      Advanced search
+      <i class="pull-right fa"
+         ng-class="{
+         'fa-close': status.open,
+         'fa-chevron-down': !status.open}"></i>
+    </accordion-heading>
+    <div class="row">
+      <div class="col-xs-6">
+        <div class="form-group">
+          Pet age from:
+          <input ng-model="user.minAge"
+                 type="number"
+                 min="0"
+                 max="99">
+          to:
+          <input ng-model="user.maxAge"
+                 type="number"
+                 min="0"
+                 max="99">
+        </div>
+      </div>
+
+      <div class="col-xs-6 form-group">
+        <input type="text"
+               placeholder="Choose a breed"
+               typeahead="breed.breed for breed in loadBreeds($viewValue)"
+               typeahead-template-url="breedTemplate.html"
+               ng-model="user.breed"
+               class="form-control">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-6">
+        <md-checkbox
+          ng-model="user.gender"
+          aria-label="lost"
+          ng-true-value="'male'"
+          ng-false-value="undefined">
+          male
+        </md-checkbox>
+        <md-checkbox
+          ng-model="user.gender"
+          aria-label="found"
+          ng-true-value="'female'"
+          ng-false-value="undefined">
+          female
+        </md-checkbox>
+      </div>
+
+      <div class="col-xs-6">
+        <md-checkbox
+          ng-model="user.isLost"
+          aria-label="lost"
+          ng-false-value="undefined">
+          lost
+        </md-checkbox>
+        <md-checkbox
+          ng-model="user.isFound"
+          aria-label="found"
+          ng-false-value="undefined">
+          found
+        </md-checkbox>
+        <md-checkbox
+          ng-model="user.isNear"
+          aria-label="found"
+          ng-false-value="undefined">
+          near me
+        </md-checkbox>
+      </div>
+    </div>
+  </accordion-group>
+</accordion>
+
+<div class="row">
+  <div class="col-xs-12">
+    <md-card ng-repeat="user in users
+  | filter:{username: user.username}
+  | filter: {isLost: user.isLost}
+  | filter: {breed:user.breed}
+  | filter: {isFound: user.isFound}
+  | filter: {gender: user.gender} : true ">
+
+      <md-card-content ng-if="user.username"
+                       ng-click="go('/users/' + (user.slug ? user.slug : user.id))">
+        <div class="media">
+          <div class="media-left">
+            <img class="img-circle"
+                 width="50px"
+                 height="50px"
+                 ng-src="{{ user.avatar ? user.avatar : default.avatar }}">
+          </div>
+
+          <div class="media-body">
+            <h2 class="media-heading">{{ user.username }}</h2>
+            <p>
+
+            <div class="pull-left">
+        <span class="label label-primary"
+              ng-repeat="tag in user.tags">{{ tag.text }}f</span>
+            </div>
+          </div>
+        </div>
+      </md-card-content>
+    </md-card>
+  </div>
+</div>

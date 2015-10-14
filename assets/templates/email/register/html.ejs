@@ -1,0 +1,6 @@
+<p>Dear <%= username ? username : 'user' %>,</p>
+<p>You recently registered on <a href="http://sispo.com">sispo.com</a> for <%= email %>.
+  Please, confirm your email address to access all features of the website.</p>
+<p align="center"><a class="button" href="<%= link %>">Confirm</a></p>
+
+<% include ../footer.ejs %>

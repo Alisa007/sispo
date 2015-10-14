@@ -1,0 +1,69 @@
+{
+  "name": "sispo",
+  "private": true,
+  "version": "0.0.0",
+  "description": "a Sails application",
+  "keywords": [],
+  "dependencies": {
+    "bcryptjs"              : "latest",
+    "validator"             : "latest",
+
+    "body-parser"           : "latest",
+    "geoip-lite"            : "latest",
+    "sitemap"               : "latest",
+
+    "nodemailer"            : "latest",
+    "email-templates"       : "latest",
+
+    "passport"              : "latest",
+    "passport-http"         : "latest",
+    "passport-facebook"     : "latest",
+    "passport-google-oauth" : "latest",
+
+    "sails"                 : "latest",
+    "sails-disk"            : "latest",
+    "sails-mongo"           : "latest",
+    "rc"                    : "latest",
+    "include-all"           : "latest",
+    "ejs"                   : "latest",
+    "grunt"                 : "latest",
+    "grunt-sync"            : "latest",
+    "grunt-contrib-copy"    : "latest",
+    "grunt-contrib-clean"   : "latest",
+    "grunt-contrib-concat"  : "latest",
+    "grunt-sails-linker"    : "latest",
+    "grunt-contrib-jst"     : "latest",
+    "grunt-contrib-watch"   : "latest",
+    "grunt-contrib-uglify"  : "latest",
+    "grunt-contrib-cssmin"  : "latest",
+    "grunt-contrib-less"    : "latest",
+    "geoip-lite"            : "*",
+
+    "skipper-azure"         : "*",
+    "jwt-simple"            : "*",
+    "moment"                : "*",
+    "request"               : "*",
+    "ip"                    : "*",
+    "geoip-lite"            : "*",
+    "country-code-lookup"   : "*"
+  },
+  "devDependencies": {
+    "chai"                  : "*",
+    "mocha"                 : "*",
+    "grunt-mocha-istanbul"  : "*",
+    "istanbul"              : "*",
+    "supertest"             : "*"
+  },
+  "scripts": {
+    "start": "node app.js",
+    "debug": "node debug app.js",
+    "test": "./node_modules/.bin/mocha test/bootstrap.test.js test/***/**/*.test.js"
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/alisabelousova/sispo.git"
+  },
+  "author": "alisabelousova",
+  "license": ""
+}

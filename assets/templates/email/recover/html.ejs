@@ -1,0 +1,6 @@
+<p>Dear <%= username ? username : 'user' %>,</p>
+<p>You recently requested an account recovery on <a href="http://sispo.com">sispo.com</a> for <%= email %>.
+  If you did not request this, just ignore this email. We'll keep your account safe.</p>
+<p align="center"><a class="button" href="<%= link %>">Recover</a></p>
+
+<% include ../footer.ejs %>
