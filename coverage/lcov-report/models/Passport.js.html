@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for models/Passport.js</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="../prettify.css">
+    <link rel="stylesheet" href="../base.css">
+    <style type='text/css'>
+        div.coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class="header low">
+    <h1>Code coverage report for <span class="entity">models/Passport.js</span></h1>
+    <h2>
+        Statements: <span class="metric">33.33% <small>(4 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Branches: <span class="metric">0% <small>(0 / 2)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Functions: <span class="metric">0% <small>(0 / 5)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Lines: <span class="metric">33.33% <small>(4 / 12)</small></span> &nbsp;&nbsp;&nbsp;&nbsp;
+        Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
+    </h2>
+    <div class="path"><a href="../index.html">All files</a> &#187; <a href="index.html">models/</a> &#187; Passport.js</div>
+</div>
+<div class="body">
+<pre><table class="coverage">
+<tr><td class="line-count">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112</td><td class="line-coverage"><span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">var bcrypt = require('bcryptjs');
+&nbsp;
+/**
+ * Hash a passport password.
+ *
+ * @param {Object}   password
+ * @param {Function} next
+ */
+<span class="fstat-no" title="function not covered" >function hashPassword (passport, next) {</span>
+<span class="cstat-no" title="statement not covered" >  if (passport.password) {</span>
+<span class="cstat-no" title="statement not covered" >    bcrypt.hash(passport.password, 10, <span class="fstat-no" title="function not covered" >function (err, hash) {</span></span>
+<span class="cstat-no" title="statement not covered" >      passport.password = hash;</span>
+<span class="cstat-no" title="statement not covered" >      next(err, passport);</span>
+    });
+  } else {
+<span class="cstat-no" title="statement not covered" >    next(null, passport);</span>
+  }
+}
+&nbsp;
+/**
+ * Passport Model
+ *
+ * The Passport model handles associating authenticators with users. An authen-
+ * ticator can be either local (password) or third-party (provider). A single
+ * user can have multiple passports, allowing them to connect and use several
+ * third-party strategies in optional conjunction with a password.
+ *
+ * Since an application will only need to authenticate a user once per session,
+ * it makes sense to encapsulate the data specific to the authentication process
+ * in a model of its own. This allows us to keep the session itself as light-
+ * weight as possible as the application only needs to serialize and deserialize
+ * the user, but not the authentication data, to and from the session.
+ */
+var Passport = {
+  attributes: {
+    // Required field: Protocol
+    //
+    // Defines the protocol to use for the passport. When employing the local
+    // strategy, the protocol will be set to 'local'. When using a third-party
+    // strategy, the protocol will be set to the standard used by the third-
+    // party service (e.g. 'oauth', 'oauth2', 'openid').
+    protocol: { type: 'alphanumeric', required: true },
+&nbsp;
+    // Local fields: Password, Access Token
+    //
+    // When the local strategy is employed, a password will be used as the
+    // means of authentication along with either a username or an email.
+    //
+    // accessToken is used to authenticate API requests. it is generated when a 
+    // passport (with protocol 'local') is created for a user. 
+    password    : { type: 'string', minLength: 8 },
+    accessToken : { type: 'string' },
+&nbsp;
+    // Provider fields: Provider, identifer and tokens
+    //
+    // "provider" is the name of the third-party auth service in all lowercase
+    // (e.g. 'github', 'facebook') whereas "identifier" is a provider-specific
+    // key, typically an ID. These two fields are used as the main means of
+    // identifying a passport and tying it to a local user.
+    //
+    // The "tokens" field is a JSON object used in the case of the OAuth stan-
+    // dards. When using OAuth 1.0, a `token` as well as a `tokenSecret` will
+    // be issued by the provider. In the case of OAuth 2.0, an `accessToken`
+    // and a `refreshToken` will be issued.
+    provider   : { type: 'alphanumericdashed' },
+    identifier : { type: 'string' },
+    tokens     : { type: 'json' },
+&nbsp;
+    // Associations
+    //
+    // Associate every passport with one, and only one, user. This requires an
+    // adapter compatible with associations.
+    //
+    // For more information on associations in Waterline, check out:
+    // https://github.com/balderdashy/waterline
+    user: { model: 'User', required: true },
+&nbsp;
+    /**
+     * Validate password used by the local strategy.
+     *
+     * @param {string}   password The password to validate
+     * @param {Function} next
+     */
+    validatePassword: <span class="fstat-no" title="function not covered" >function (password, next) {</span>
+<span class="cstat-no" title="statement not covered" >      bcrypt.compare(password, this.password, next);</span>
+    }
+&nbsp;
+  },
+&nbsp;
+  /**
+   * Callback to be run before creating a Passport.
+   *
+   * @param {Object}   passport The soon-to-be-created Passport
+   * @param {Function} next
+   */
+  beforeCreate: <span class="fstat-no" title="function not covered" >function (passport, next) {</span>
+<span class="cstat-no" title="statement not covered" >    hashPassword(passport, next);</span>
+  },
+&nbsp;
+  /**
+   * Callback to be run before updating a Passport.
+   *
+   * @param {Object}   passport Values to be updated
+   * @param {Function} next
+   */
+  beforeUpdate: <span class="fstat-no" title="function not covered" >function (passport, next) {</span>
+<span class="cstat-no" title="statement not covered" >    hashPassword(passport, next);</span>
+  }
+};
+&nbsp;
+module.exports = Passport;
+&nbsp;</pre></td></tr>
+</table></pre>
+
+</div>
+<div class="footer">
+    <div class="meta">Generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Apr 29 2015 12:33:17 GMT+0800 (MYT)</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
