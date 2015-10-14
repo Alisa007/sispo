@@ -1,6 +1,6 @@
 # sispo
 
-a [Sails](http://sailsjs.org) application
+a [Sails](http://sailsjs.org)/Angular application
 
 TODO
 <ul>
