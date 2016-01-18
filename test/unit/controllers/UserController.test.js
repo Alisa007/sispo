@@ -2,70 +2,25 @@
  * Created by alisabelousova on 4/28/15.
  */
 
-var request = require('supertest')
-  , should = require('chai').expect;
+var request = require('supertest');
 
 describe('UserController', function() {
-  describe('#accessAnalytics()', function() {
-    it('should respond with google analytics token', function (done) {
+  describe('GET /user/ga-token', function () {
+    it('respond with google analytics token', function (done) {
       request(sails.hooks.http.app)
         .get('/user/ga-token')
-        .expect(200, done);
-        //.expect(res.body.should.have.property('token'));
+        .expect(200)
+        .expect(res.body.should.have.property('token'))
+        .end(done);
     });
   });
 
-  //describe('UsersController', function() {
-  //
-  //  describe('#login()', function() {
-  //    it('should redirect to /mypage', function (done) {
-  //      request(sails.hooks.http.app)
-  //        .post('/users/login')
-  //        .send({ name: 'test', password: 'test' })
-  //        .expect(302)
-  //        .expect('location','/mypage', done);
-  //    });
-  //  });
-  //
-  //});
-
-  //describe('#uploadAvatar()', function(req, res) {
-  //  it('should respond with google analytics token', function (done) {
-  //    request(sails.hooks.http.app)
-  //      //.post('/users/ga-token')
-  //      //.send({ name: 'test', password: 'test' })
-  //      //.expect(302)
-  //      //.expect('location','/mypage', done);
-  //      .post('/user/avatar')
-  //      //.send({ name: 'test', password: 'test' })
-  //      .expect(200);
-  //  });
-  //});
-  //
-  //describe('UsersController', function() {
-  //
-  //  describe('#confirmEmail()', function() {
-  //    it('should redirect to /mypage', function (done) {
-  //      request(sails.hooks.http.app)
-  //        .post('/users/login')
-  //        .send({ name: 'test', password: 'test' })
-  //        .expect(302)
-  //        .expect('location','/mypage', done);
-  //    });
-  //  });
-  //
-  //  describe('#resetPassword()', function() {
-  //    it('should redirect to /mypage', function (done) {
-  //      request(sails.hooks.http.app)
-  //        .post('/users/login')
-  //        .send({ name: 'test', password: 'test' })
-  //        .expect(302)
-  //        .expect('location','/mypage', done);
-  //    });
-  //  });
-  //});
-
-  //.post('/')
-  //.attach('avatar', 'test/fixtures/homeboy.jpg')
-
+  describe('GET /user/current', function () {
+    it('respond with current user', function (done) {
+      request(sails.hooks.http.app)
+        .get('/user/ga-token')
+        .expect(200)
+        .end(done);
+    });
+  });
 });

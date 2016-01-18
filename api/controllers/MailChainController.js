@@ -4,7 +4,11 @@
 
 module.exports = {
 
-  searchMailChain: function(req, res) {
+  /**
+   * Get mailbox of provided user
+   */
+
+  getMailBox: function(req, res) {
     var profile = req.query.profile;
 
     MailChain.find({
@@ -24,12 +28,14 @@ module.exports = {
     });
   },
 
+  /**
+   * Start a conversation between 2 users
+   */
+
   createMailChain: function(req, res) {
     var sender = req.body.sender;
     var receiver = req.body.receiver;
     var isFound = false;
-
-    console.log(sender + ' ' + receiver);
 
     if (sender && receiver) {
       MailChain.find().populate('users').exec(function (err, results) {
@@ -39,7 +45,6 @@ module.exports = {
               (results[i].users[0].id == sender && results[i].users[1].id == receiver) ||
               (results[i].users[1].id == sender && results[i].users[0].id == receiver)
             ) {
-              console.log('found');
               isFound = true;
               res.json(results[i]);
               break;
@@ -48,7 +53,6 @@ module.exports = {
         }
 
         if (isFound == false) {
-          console.log('not found');
           MailChain.create().populate('users').exec(function(err, mailChain) {
             mailChain.users.add(sender);
             mailChain.users.add(receiver);

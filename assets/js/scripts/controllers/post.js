@@ -24,16 +24,11 @@ angular.module('app.post', ['summernote'])
     $scope.post = {};
 
     $rootScope.upload = function(files) {
-      console.log(files);
-
       if (files) {
         Upload.upload({
           url: '/createImage',
           file: files[0]
         }).success(function (data, status, headers, config) {
-
-          console.log(data);
-
           var url = 'https://sispo.blob.core.windows.net/user/' + data.files[0].fd;
           $('.summernote').summernote('editor.insertImage', url);
         });
@@ -42,14 +37,10 @@ angular.module('app.post', ['summernote'])
 
     $scope.submit = function() {
       $scope.post.author = $rootScope.profile.id;
-      console.log($scope.post);
 
       Restangular.one("createPost").post("", $scope.post).then(function(response){
-        console.log(response);
         $location.url('/posts/' + response.slug);
       });
-      //console.log($scope.post);
-      //console.log($scope.files);
     };
 
     $scope.loadTags = function(query) {

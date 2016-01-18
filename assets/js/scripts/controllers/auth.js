@@ -43,24 +43,19 @@ angular.module('app.auth', ['base64', 'satellizer'])
   .controller('RecoverController', function ($scope, $rootScope,  $location,
                                              $routeParams, Restangular,  growl, auth) {
     $scope.user = {};
-    console.log('here');
 
     $scope.recover = function(user, isValid) {
       if (isValid && $routeParams.email && $routeParams.token) {
-        console.log('recover valid');
         Restangular.one("user").get({
           email        : $routeParams.email,
           recoverToken : $routeParams.token
         }).then(function(response){
-          console.log(response[0]);
           var user = response[0];
           if (user) {
-            console.log(user);
             Restangular.one('passport').get({
               provider : 'basic',
               user     : user.id
             }).then(function(response) {
-              console.log(response[0]);
               var passport = response[0];
               Restangular.one('passport', passport.id).put({password: $scope.user.password}).then(function(response) {
                 growl.success(response.message ? response.message : "You password is updated");

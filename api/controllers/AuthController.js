@@ -1,9 +1,6 @@
 var validator      = require('validator')
-  , crypto         = require('crypto')
-  , util           = require('util')
   , nodemailer     = require('nodemailer')
   , geoip          = require('geoip-lite')
-  , path           = require('path')
   , templatesDir   = path.resolve(__dirname, '../..', 'assets', 'templates', 'email')
   , emailTemplates = require('email-templates')
   , passport = require('passport');
@@ -17,6 +14,10 @@ var transporter = nodemailer.createTransport({
 });
 
 var AuthController = {
+  /**
+   * Authenticate with one of social providers
+   */
+
   auth: function (req, res) {
     var provider = req.param('provider');
 
@@ -32,6 +33,10 @@ var AuthController = {
       default:  return res.status(500).send({ message: 'Unknown provider' });
     }
   },
+
+  /**
+   * Send email to the user provided email
+   */
 
   sendEmail: function(req, res, email, link, user) {
     emailTemplates(templatesDir, function(err, template) {
@@ -62,6 +67,10 @@ var AuthController = {
       }
     })
   },
+
+  /**
+   * Register with email and password
+   */
 
   signup: function (req, res) {
     var email    = req.body.email
@@ -99,9 +108,17 @@ var AuthController = {
     });
   },
 
+  /**
+   * Reset the password
+   */
+
   recover: function (req, res) {
     AuthService.recover(req, res);
   },
+
+  /**
+   * Authenticate with email and password
+   */
 
   login: function (req, res) {
     var email    = req.body.email
@@ -150,6 +167,10 @@ var AuthController = {
       });
     }
   },
+
+  /**
+   * List authentication providers
+   */
 
   options: function (req, res) {
     var strategies = sails.config.passport

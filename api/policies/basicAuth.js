@@ -13,6 +13,5 @@
 
 
 module.exports = function (req, res, next) {
-  console.log('wow');
   return passport.authenticate('basic', { session: false })(req, res, next);
 };

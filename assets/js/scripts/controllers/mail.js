@@ -29,8 +29,6 @@ angular.module('app.mail', ['perfect_scrollbar'])
         })
       });
 
-      console.log($scope.mailChains[0]);
-
       $scope.goList();
     });
 
@@ -42,10 +40,7 @@ angular.module('app.mail', ['perfect_scrollbar'])
     $scope.goDetail = function(mailChain) {
       $scope.heading = 'templates/mail/detailHeading.html';
       $scope.mailTemplate = '/templates/mail/detail.html';
-      console.log(mailChain);
       $scope.mailChain = $scope.mailChains[mailChain];
-      console.log($scope.mailChain);
-      //$scope.mailChain = mailChain;
     };
 
     (function () {
@@ -61,19 +56,12 @@ angular.module('app.mail', ['perfect_scrollbar'])
       $sails.on("mail", function (response) {
         var isFound = false;
 
-        console.log(response.data);
-
         if (response.verb === "created") {
-          console.log("created");
-          console.log(response.data);
-          console.log($rootScope.profile.id);
-
           if (response.data.receiver == $rootScope.profile.id ||
             response.data.sender == $rootScope.profile.id) {
 
             for(var i = 0; i <  $scope.mailChains.length; i++) {
               if ($scope.mailChains[i].id == response.data.mailChain) {
-                console.log("new mail");
                 $scope.mailChains[i].mails.unshift(response.data);
                 isFound = true;
                 break;
@@ -84,7 +72,6 @@ angular.module('app.mail', ['perfect_scrollbar'])
               $rootScope.new.messages = $rootScope.new.messages + 1;
             }
             if (isFound == false) {
-              console.log('new Chain');
               Restangular.one('mailChain', response.data.mailChain).get().then(function (response) {
                 $scope.mailChains.unshift(response);
               });
@@ -123,31 +110,20 @@ angular.module('app.mail', ['perfect_scrollbar'])
     $scope.send = function () {
 
       $scope.mail.sender = $rootScope.profile.id;
-
       Restangular.one('user').get({
         username: $scope.mail.receiver}).then(function (response) {
 
         $scope.mail.receiver = response[0].id;
-
         Restangular.one('createMailChain').post('', $scope.mail).then(function (response) {
 
           $scope.mail.mailChain = response.id;
-
           Restangular.one('mail').post('', $scope.mail).then(function (response) {
-            console.log(response);
-
             $scope.mail = {};
           });
         });
       });
     };
   })
-
-  .controller('MailDetailController', function ($http, $scope, $routeParams, $sails, Restangular) {
-
-
-  })
-
   .controller('MailDetailFormController', function ($http, $rootScope, $scope, $routeParams, growl, Restangular) {
 
     $scope.send = function () {
@@ -159,8 +135,6 @@ angular.module('app.mail', ['perfect_scrollbar'])
       } else if ($scope.mailChain.users[1].id == $rootScope.profile.id) {
         receiver = $scope.mailChain.users[0].id;
       }
-
-      console.log(receiver);
 
       var mail = {
         sender    : $rootScope.profile.id,
@@ -176,5 +150,4 @@ angular.module('app.mail', ['perfect_scrollbar'])
         growl.error(response.data.message ? response.data.message : "Sorry, we couldn't send your message.");
       })
     };
-
   });

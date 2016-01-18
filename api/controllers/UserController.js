@@ -4,14 +4,14 @@
  * @description :: Server-side logic for managing Users
  * @help        :: See http://links.sailsjs.org/docs/controllers
  */
-//var passport = require('passport');
-var crypto         = require('crypto')
-  , util           = require('util')
-  , path           = require('path')
-  , googleAuth     = require('google-oauth-jwt');
 
+var googleAuth     = require('google-oauth-jwt');
 
 module.exports = {
+
+  /**
+   * Get google analytics token
+   */
 
   accessAnalytics: function(req, res) {
     var authOptions = {
@@ -27,30 +27,11 @@ module.exports = {
     });
   },
 
+  /**
+   * Get current user
+   */
+
   currentUser:  function(req, res) {
-    console.log(req.user);
     res.send(req.user);
-  },
-
-  confirmEmail: function(req, res) {
-    var user = {
-      email    : req.query.email,
-      token    : req.query.token
-    };
-
-    User.update(user, {
-        is_confirmed : true,
-        token        : crypto.randomBytes(64).toString('hex')})
-      .exec(function(err, user, info) {
-        if (err) {
-          console.log(err);
-          res.serverError();
-        } else res.redirect('/users/' + user.id);
-      });
-  },
-
-  resetPassword: function(req, res) {
-    var email  = req.body.email;
-    var link   = 'http://localhost:1337/reset_password?email=' + email + '&token=' + token;
   }
 };

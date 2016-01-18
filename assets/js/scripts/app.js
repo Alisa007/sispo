@@ -18,17 +18,13 @@ angular.module('app', [
   'ngMaterial',
   'ngTagsInput',
   'ngFileUpload',
-  //'ngAutocomplete',
   'restangular',
-  //'infinite-scroll',
   'app.admin',
   'app.auth',
   'app.user',
   'app.post',
   'app.mail',
   'infinite-scroll',
-  //'ezfb',
-  //'btford.socket-io'
   'angular-growl'
 ])
   .config(function (cfpLoadingBarProvider, $locationProvider,

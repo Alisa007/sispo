@@ -42,29 +42,6 @@ angular.module('app.user', ['ngAutocomplete', 'ngEditable'])
       });
     };
 
-    $scope.query = function(user) {
-      //var res1;
-      //var res2;
-      //var res3;
-      //
-      //if ($scope.user.minAge) {
-      //  res1 = (user.age >= $scope.user.maxAge);
-      //} else res1 = true;
-      //
-      //if ($scope.user.maxAge) {
-      //  res2 = (user.age <= $scope.user.maxAge);
-      //} else res2 = true;
-      //
-      ////  | filter: {location: {city: profile.location.city}} : true
-      //if ($scope.user.isNear) {
-      //  if (user.location && $rootScope.profile.location) {
-      //    res3 = (user.location.city == $rootScope.profile.location.city);
-      //  } else res3 = false;
-      //} else res3 = true;
-      //
-      //return ((res1 && res2) && res3);
-    };
-
     $scope.loadBreeds = function(query) {
       var here = '{"breed":{"contains":"' + query + '"}}';
 

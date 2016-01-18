@@ -1,7 +1,5 @@
-'use strict';
-
 /**
- * A directive for adding google places autocomplete to a text box
+ * A directive for adding google places autocomplete to a text box from: https://github.com/wpalahnuk/ngAutocomplete
  * google places autocomplete info: https://developers.google.com/maps/documentation/javascript/places
  *
  * Usage:
@@ -26,6 +24,8 @@
  *        country: 'ca'
  *    }
  **/
+
+'use strict';
 
 angular.module( "ngAutocomplete", [])
   .directive('ngAutocomplete', function() {
@@ -101,7 +101,7 @@ angular.module( "ngAutocomplete", [])
               }
             }
           }
-        })
+        });
 
         //function to get retrieve the autocompletes first result using the AutocompleteService
         var getPlace = function(result) {

@@ -5,6 +5,11 @@
 var blobAdapter    = require('skipper-azure');
 
 module.exports = {
+
+  /**
+   * Upload image to Azure blob
+   */
+
   createImage: function(req, res) {
     var file = req.file('file');
 

@@ -6,6 +6,11 @@
  */
 
 module.exports = {
+
+  /**
+   * Create blog post
+   */
+
   createPost: function(req, res) {
     Post.create({
       title : req.body.title,

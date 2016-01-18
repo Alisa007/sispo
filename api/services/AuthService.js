@@ -37,13 +37,10 @@ module.exports = {
       id : user.id
     }, {
       location: geo
-    }).exec(function (err, users) {
-
-    });
+    }).exec();
   },
 
   createJWT: function (user) {
-
     var payload = {
       sub: user.id,
       iat: moment().unix(),
@@ -56,9 +53,6 @@ module.exports = {
   authProvider: function(req, res, email, isVerified, provider, accessToken) {
     User.findOne({ email: email }, function(err, user) {
       if (err || !user) {
-
-        console.log(err);
-
         User.create({
           email         : email
           , isVerified  : isVerified
@@ -83,8 +77,6 @@ module.exports = {
           user: user.id
         }, function(err, passport) {
           if (err || !passport) {
-            console.log('passport not found');
-
             Passport.create({
               provider      : 'google'
               , protocol    :'oauth2'
